@@ -14,7 +14,12 @@ const characterSchema = new Schema({
   category: Array
 })
 
+// const allCharacterSchema = new Schema({
+//   allChar: [characterSchema],
+// })
+
 const Character = mongoose.model("all_characters", characterSchema);
+// const AllCharacters = mongoose.model("all_characters", allCharacterSchema);
 
 module.exports = { Character };
 
