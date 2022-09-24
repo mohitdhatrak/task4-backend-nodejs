@@ -14,7 +14,7 @@ const characterSchema = new Schema({
   category: Array
 })
 
-const Character = mongoose.model("favourite_character", characterSchema);
+const Character = mongoose.model("all_characters", characterSchema);
 
 module.exports = { Character };
 

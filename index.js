@@ -12,11 +12,12 @@ app.post("/", async (req, res) => {
 
   try {
     const response = await axios.get(apiURL);
-    const favCharData =
-      response.data.find(obj => obj.name === "Henry Schrader");
-    const favCharacter = new Character(favCharData);
-    const data = await favCharacter.save();
-    res.json(data);
+    let eachChar;
+    for (const obj of response.data) {
+      eachChar = new Character(obj);
+      const data = await eachChar.save();
+    }
+    res.json(response);
   }
   catch (error) {
     res.json({
@@ -28,8 +29,8 @@ app.post("/", async (req, res) => {
 
 app.get("/", async (req, res) => {
   try {
-    const favChar = await Character.find({});
-    res.json({ favChar });
+    const allChar = await Character.find({});
+    res.json({ allChar });
   } catch (error) {
     res.json({
       message: "Could not get the character data",
